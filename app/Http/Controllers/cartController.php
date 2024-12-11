@@ -54,7 +54,7 @@ class cartController extends Controller
                 'user_id' =>$user_id
                 ]);     
         }
-        $cartProduct = Cart::where('user_id', $user_id)->first()->products()->get();
+        $cartProduct = Cart::where('user_id', $user_id)->first()->products()->with(['images'])->get();
 
         if($cartProduct->isEmpty()){
             
