@@ -62,4 +62,16 @@ class cartController extends Controller
         }
         return response()->json($cartProduct);
     }
+    public function deleteProductFromCart(Request $request, $cart_id, $product_id){
+        $cart = Cart::find($cart_id);
+        $product = $cart->products()->where('product_id', $product_id)->first();
+        if(!$product){
+
+            return response()->json(["error"=>"Error deleting the Product , try again later..", $product], 404);
+        }
+        $product->delete();
+        return response()->json(["message"=>"Product deleted from Cart", $product], 200);
+
+
+    }
 }
