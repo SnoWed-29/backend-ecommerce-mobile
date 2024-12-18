@@ -7,6 +7,8 @@ use App\Models\Cart;
 use App\Models\Order;
 class orderController extends Controller
 {   
+    // Route::post('/orders', [orderController::class , 'createOrder']);
+
     public function createOrder(Request $request)
 {
     // Validate the incoming request
