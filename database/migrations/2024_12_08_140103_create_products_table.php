@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->longText('description');
             $table->decimal('price');
+            $table->unsignedBigInteger('user_id'); 
+            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
         Schema::create('product_category', function (Blueprint $table) {
@@ -35,6 +38,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('product_category');
         Schema::dropIfExists('products');
     }
 };
